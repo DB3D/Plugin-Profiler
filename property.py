@@ -17,9 +17,9 @@ class PLUGINPROFILER_PR_exectracker_functions_only(bpy.types.PropertyGroup):
 
 
 class PLUGINPROFILER_AddonPref(bpy.types.AddonPreferences):
-    """prefs = bpy.context.preferences.addons["Plugin Profiler"].preferences"""
+    """prefs = bpy.context.preferences.addons["Plugin-Profiler"].preferences"""
     
-    bl_idname = "Plugin Profiler"
+    bl_idname = "Plugin-Profiler"
         
     exectracker_module_path : bpy.props.StringProperty(
         subtype="DIR_PATH",

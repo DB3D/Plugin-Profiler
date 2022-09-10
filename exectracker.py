@@ -15,7 +15,7 @@ def tracker(frame: types.FrameType, event: str, arg):
     """tracker to be registered in sys.setprofile
     https://docs.python.org/3/library/sys.html#sys.setprofile"""
 
-    prefs = bpy.context.preferences.addons["Plugin Profiler"].preferences
+    prefs = bpy.context.preferences.addons["Plugin-Profiler"].preferences
 
     #initiate a static variable 
     _f = tracker

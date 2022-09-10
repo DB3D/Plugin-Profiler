@@ -33,7 +33,7 @@ class PLUGINPROFILER_OT_uilist_actions(bpy.types.Operator):
 
     def execute(self, context):
 
-        prefs = bpy.context.preferences.addons["Plugin Profiler"].preferences
+        prefs = bpy.context.preferences.addons["Plugin-Profiler"].preferences
         if (not hasattr(prefs,self.group)):
             return {'FINISHED'}
 
@@ -55,7 +55,7 @@ class PLUGINPROFILER_OT_uilist_actions(bpy.types.Operator):
 
 def draw_interface(layout,):
 
-    prefs = bpy.context.preferences.addons["Plugin Profiler"].preferences
+    prefs = bpy.context.preferences.addons["Plugin-Profiler"].preferences
 
     from . exectracker import PLUGINPROFILER_OT_exectracker
     is_running, op_txt, op_icon = PLUGINPROFILER_OT_exectracker.get_infos()

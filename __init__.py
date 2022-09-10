@@ -1,7 +1,7 @@
 
 
 bl_info = {
-    "name" : "Plugin Profiler",
+    "name" : "Plugin-Profiler",
     "author" : "bd3d",
     "description" : "Benchmark or Debug Python Plugins",
     "blender" : (3, 0, 0),

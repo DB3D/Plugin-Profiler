@@ -13,6 +13,7 @@ bl_info = {
 
 from . exectracker import PLUGINPROFILER_OT_exectracker
 from . benchmarker import PLUGINPROFILER_OT_benchmarker
+from . benchmarker import PLUGINPROFILER_OT_benchmarkops
 
 from . interface import PLUGINPROFILER_UL_name_list1
 from . interface import PLUGINPROFILER_UL_name_list2
@@ -21,31 +22,39 @@ from . interface import PLUGINPROFILER_UL_name_list4
 from . interface import PLUGINPROFILER_OT_uilist_actions
 
 from . presetting import PLUGINPROFILER_OT_add_trackerpreset
+from . presetting import PLUGINPROFILER_OT_load_trackerpreset
 from . presetting import PLUGINPROFILER_OT_remove_trackerpreset
-from . presetting import PLUGINPROFILER_PT_scatter_preset_header
+from . presetting import PLUGINPROFILER_PT_trackerpreset_panel
 
 from . property import PLUGINPROFILER_PR_exectracker_modules_ignore
 from . property import PLUGINPROFILER_PR_exectracker_modules_only
 from . property import PLUGINPROFILER_PR_exectracker_functions_ignore
 from . property import PLUGINPROFILER_PR_exectracker_functions_only
 from . property import PLUGINPROFILER_AddonPref
+from . property import PLUGINPROFILER_PR_Window
 
 classes = (
     PLUGINPROFILER_OT_exectracker,
     PLUGINPROFILER_OT_benchmarker,
+    PLUGINPROFILER_OT_benchmarkops,
+
     PLUGINPROFILER_UL_name_list1,
     PLUGINPROFILER_UL_name_list2,
     PLUGINPROFILER_UL_name_list3,
     PLUGINPROFILER_UL_name_list4,
     PLUGINPROFILER_OT_uilist_actions,
+
     PLUGINPROFILER_OT_add_trackerpreset,
+    PLUGINPROFILER_OT_load_trackerpreset,
     PLUGINPROFILER_OT_remove_trackerpreset,
-    PLUGINPROFILER_PT_scatter_preset_header,
+    PLUGINPROFILER_PT_trackerpreset_panel,
+
     PLUGINPROFILER_PR_exectracker_modules_ignore,
     PLUGINPROFILER_PR_exectracker_modules_only,
     PLUGINPROFILER_PR_exectracker_functions_ignore,
     PLUGINPROFILER_PR_exectracker_functions_only,
     PLUGINPROFILER_AddonPref,
+    PLUGINPROFILER_PR_Window,
     )
 
 import bpy
@@ -70,10 +79,14 @@ def register():
     for cls in classes: 
        bpy.utils.register_class(cls)
 
+    bpy.types.WindowManager.plugin_profiler = bpy.props.PointerProperty(type=PLUGINPROFILER_PR_Window)
+
     return None 
 
 def unregister():
     
+    del bpy.types.WindowManager.plugin_profiler
+
     for cls in reversed(classes): 
         bpy.utils.unregister_class(cls)
 

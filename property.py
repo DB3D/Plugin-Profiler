@@ -81,7 +81,16 @@ class PLUGINPROFILER_AddonPref(bpy.types.AddonPreferences):
         default=True,
         )
 
+    trackerpreset_name : bpy.props.StringProperty()
+
     def draw(self,context):
 
         from . interface import draw_interface
         draw_interface(self.layout)
+
+
+class PLUGINPROFILER_PR_Window(bpy.types.PropertyGroup):
+    """bpy.context.window_manager.plugin_profiler"""
+
+    ui_bool_exectracker : bpy.props.BoolProperty(default=True)
+    ui_bool_benchmarker : bpy.props.BoolProperty(default=True)

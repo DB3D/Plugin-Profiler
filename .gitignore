@@ -1,0 +1,8 @@
+
+.DS_Store
+__pycache__
+.vs
+*.blend1
+*.blend2
+*.blend3
+nodes/nodegroups/blendcache_vgmasks/456D6974746572_000040_00.bphys

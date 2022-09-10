@@ -36,7 +36,7 @@ def tracker(frame: types.FrameType, event: str, arg):
             return tracker
         #ignore list comp
         if ( prefs.exectracker_ignore_listcomp):
-            if ("<listcomp>" in func_name)
+            if ("<listcomp>" in func_name):
                 return tracker
 
         #Preference Filters: 
@@ -112,7 +112,7 @@ def tracker(frame: types.FrameType, event: str, arg):
 
             if prefs.exectracker_print_datetime:
                 start_time = _f.callstack[func_key]["datetime"]
-                printer+="at %sh%sm%ss " % (start_time.hour, start_time.minute, start_time.second)
+                printer+="at '%sh%sm%ss' " % (start_time.hour, start_time.minute, start_time.second)
 
             if prefs.exectracker_print_functime:
                 start_time = _f.callstack[func_key]["datetime"]

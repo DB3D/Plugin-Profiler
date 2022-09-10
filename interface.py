@@ -61,7 +61,10 @@ def draw_interface(layout,):
     is_running, op_txt, op_icon = PLUGINPROFILER_OT_exectracker.get_infos()
 
     box = layout.box()
-    box.label(text="Execution Tracker", icon="CONSOLE")
+    title = box.row()
+    title.label(text="Execution Tracker", icon="CONSOLE")
+    title.separator_spacer()
+    title.popover(panel="PLUGINPROFILER_PT_scatter_preset_header", text="", icon="PRESET", emboss=False,)
     txt = box.column()
     txt.scale_y = 0.7
     txt.label(text="Print every functions executions happening in the background in your blender console")
@@ -80,9 +83,15 @@ def draw_interface(layout,):
     if prefs.exectracker_print_funcname:
       prop.prop(prefs, "exectracker_print_funcdepth", text="FctName Path Depth")
 
+    box.separator(factor=0.2)
+
     prop = box.column(align=True)
     prop.label(text="Only Listen to Module:",)
     prop.prop(prefs, "exectracker_module_path", text="")
+
+    box.separator(factor=0.2)
+
+    box.separator(factor=0.2)
 
     row = box.row()
 

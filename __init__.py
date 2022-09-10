@@ -13,11 +13,17 @@ bl_info = {
 
 from . exectracker import PLUGINPROFILER_OT_exectracker
 from . benchmarker import PLUGINPROFILER_OT_benchmarker
+
 from . interface import PLUGINPROFILER_UL_name_list1
 from . interface import PLUGINPROFILER_UL_name_list2
 from . interface import PLUGINPROFILER_UL_name_list3
 from . interface import PLUGINPROFILER_UL_name_list4
 from . interface import PLUGINPROFILER_OT_uilist_actions
+
+from . presetting import PLUGINPROFILER_OT_add_trackerpreset
+from . presetting import PLUGINPROFILER_OT_remove_trackerpreset
+from . presetting import PLUGINPROFILER_PT_scatter_preset_header
+
 from . property import PLUGINPROFILER_PR_exectracker_modules_ignore
 from . property import PLUGINPROFILER_PR_exectracker_modules_only
 from . property import PLUGINPROFILER_PR_exectracker_functions_ignore
@@ -32,6 +38,9 @@ classes = (
     PLUGINPROFILER_UL_name_list3,
     PLUGINPROFILER_UL_name_list4,
     PLUGINPROFILER_OT_uilist_actions,
+    PLUGINPROFILER_OT_add_trackerpreset,
+    PLUGINPROFILER_OT_remove_trackerpreset,
+    PLUGINPROFILER_PT_scatter_preset_header,
     PLUGINPROFILER_PR_exectracker_modules_ignore,
     PLUGINPROFILER_PR_exectracker_modules_only,
     PLUGINPROFILER_PR_exectracker_functions_ignore,
@@ -40,6 +49,21 @@ classes = (
     )
 
 import bpy
+
+def cleanse_modules():
+    """remove all plugin modules from sys.modules, will load them again, creating an effective hit-reload soluton
+    Not sure why blender is no doing this already whe disabling a plugin..."""
+    #https://devtalk.blender.org/t/plugin-hot-reload-by-cleaning-sys-modules/20040
+
+    import sys
+    all_modules = sys.modules 
+    all_modules = dict(sorted(all_modules.items(),key= lambda x:x[0])) #sort them
+    
+    for k,v in all_modules.items():
+        if k.startswith(__name__):
+            del sys.modules[k]
+
+    return None 
 
 def register():
 
@@ -52,6 +76,8 @@ def unregister():
     
     for cls in reversed(classes): 
         bpy.utils.unregister_class(cls)
+
+    cleanse_modules()
     
     return None 
 

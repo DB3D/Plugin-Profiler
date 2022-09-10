@@ -6,8 +6,8 @@ bl_info = {
     "description" : "Benchmark or Debug Python Plugins",
     "blender" : (3, 0, 0),
     "version" : (1, 0, 0),
-    "wiki_url" : "",
-    "tracker_url" : "",
+    "wiki_url" : "https://blender.stackexchange.com/questions/273803/profiling-a-blender-plugin/274271#274271",
+    "tracker_url" : "https://blender.stackexchange.com/questions/273803/profiling-a-blender-plugin/274271#274271",
     "category" : "Development",
     }
 

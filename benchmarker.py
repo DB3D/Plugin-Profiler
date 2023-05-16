@@ -127,7 +127,8 @@ class PLUGINPROFILER_OT_benchmarkops(bpy.types.Operator):
         #define command to run viz app
 
         if (platform.system()=="Windows"):
-            command = f"python -m snakeviz {filename}"
+            path = f"\"{path}\"" #adding " as prefix and suffix to validate paths containing whitespaces
+            command = f"python -m snakeviz {path}"
         
         elif (platform.system()=="Darwin"):
             command = f"{sys.executable} -m snakeviz '{localpath}'"

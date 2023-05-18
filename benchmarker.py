@@ -59,6 +59,7 @@ class PLUGINPROFILER_OT_benchmarkops(bpy.types.Operator):
     bl_options = {'INTERNAL'}
 
     directory : bpy.props.StringProperty(subtype="DIR_PATH")
+    filepath: bpy.props.StringProperty(subtype="FILE_PATH")
     operation : bpy.props.StringProperty(default="", options={"SKIP_SAVE","HIDDEN"},) #print|save_log|run_viz
     
     def invoke(self, context, event):
@@ -91,9 +92,9 @@ class PLUGINPROFILER_OT_benchmarkops(bpy.types.Operator):
 
         return None
 
-    def save_log(self, prefs, stats_string, stats_pstats): 
+    def save_log(self, prefs, stats_string, stats_pstats):
 
-        path = os.path.join(self.filepath,"plugin_profiler_export.log")
+        path = f"{self.filepath}-plugin_profiler_export.log"
         stats_pstats.dump_stats(path)
 
         return None

@@ -180,7 +180,7 @@ def draw_interface(layout,):
         button.operator("plugin_profiler.benchmarkops", text="Console-Print Result",).operation = "print"
 
         button = box.row()
-        button.operator("plugin_profiler.benchmarkops", text="Run Snaleviz",).operation = "run_viz"
+        button.operator("plugin_profiler.benchmarkops", text="Run SnakeViz",).operation = "run_viz"
 
         button = box.row()
         button.operator("plugin_profiler.benchmarkops", text="Save Log",).operation = "save_log"
